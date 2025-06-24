@@ -132,14 +132,18 @@
 
 
 
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import latex
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173"])  # ✅ Allow your frontend origin
+
+# ✅ Enable CORS for both local and deployed frontend
+CORS(app, origins=[
+    "http://localhost:5173",
+    "https://codeclash2-0.vercel.app"
+])
 
 @app.route('/generate-gig', methods=['POST'])
 def generate_gig():
